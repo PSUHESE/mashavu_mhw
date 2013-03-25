@@ -1,0 +1,3 @@
+name = Simple Login Page
+description = Creates a very simple login page at user  
+core = 7.x

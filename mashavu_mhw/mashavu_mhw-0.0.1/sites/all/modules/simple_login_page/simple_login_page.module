@@ -1,0 +1,32 @@
+<?php
+
+//By: Mike Ghen
+//Date: 5/20/2012
+//Description: This is Simple User Login which, when enabled, will make
+//             a very simple user login page by hiding the 'Create new 
+//             account' and 'Request new password' tabs on the 'user/login'
+//             page.
+
+
+
+//NOTE: Remember to clear the menu cache after 
+//      adding/editing this function.
+
+function simple_login_page_menu_alter(&$items) {
+// Implementation of hook_menu_alter().
+// PRE:  N/A
+// POST: The tabs 'Create new account' and 'Request new password' on the 
+//       'user/login' page are hidden.
+
+  // Set these tabs to MENU_CALLBACK so they still register the path,
+  // but just don't show the tab:
+  $items['user/register']['type'] = MENU_CALLBACK;
+  $items['user/password']['type'] = MENU_CALLBACK;
+  
+  
+  
+}
+
+
+
+?>

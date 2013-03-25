@@ -1,0 +1,3 @@
+name = Full User Name
+description = Alters the usernames to be field_full_name. Users MUST have a field_name.
+core = 7.x

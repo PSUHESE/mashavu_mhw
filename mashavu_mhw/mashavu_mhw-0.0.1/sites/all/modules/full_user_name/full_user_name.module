@@ -1,0 +1,23 @@
+<?php
+//By:          Mike Ghen
+//Date:        5/21/12   
+//Description: This alters the username of all users to show up as their
+//             full name as it appears in field_name
+
+//Implementation of hook_username_alter
+function full_user_name_username_alter(&$name, $account) 
+//PRE:  &$name is the user's name as it appears internally
+//      $accout is the user's acocunt information (as an array) 
+//POST: &$name is assigned to the value of field_name from $account
+{
+  //DEBUGGING
+  
+  if (isset($account->uid))                                //If there is a user
+  {                                                     
+	$account = user_load($account->uid);  
+	if(isset($account->field_name['und']['0']['value']))   //If field_name isset
+	{
+		$name = $account->field_name['und']['0']['value']; //Set $name to field_name 
+	}
+  }
+}
