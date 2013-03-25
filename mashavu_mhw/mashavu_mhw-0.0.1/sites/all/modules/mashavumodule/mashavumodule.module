@@ -1,0 +1,33 @@
+<?php
+
+function mashavumodule_page_alter(&$page) {
+//Description: This code Block will add a 'Return to Profile' button to all node's
+  
+  if(substr(request_path(), 0,4) == 'node' && substr(request_path(), 0,6) != 'node/a' ) //If this page is a node page
+  {
+	  $nid = substr(request_path(), 5);  //find the node id
+	  
+	  $id = $page['content']['system_main']['nodes'][$nid]['field_user_id']['#items'][0]['value'];
+	  
+	  
+	  
+	  $attributes = array( 'class' => 'return-to-profile');
+	  
+	   $page['content']['block_4']['#markup'] = l("Return to Profile", "user/{$id}", array('attributes' => array('class' => 'return-operator')));
+  }
+  else
+  {
+	$page['content']['block_4']['#markup'] = l("", "");
+  }
+  
+}
+
+function mashavumodule_form_alter(&$form, $form_state, $form_id)  {
+  	switch ($form_id)  {
+  	 	case 'know_your_numbers_node_form':
+			//$form['title']['#access'] = 0;
+			//$form['field_user_id']['#access'] = 0;
+  	 		break;
+  	 }
+}
+

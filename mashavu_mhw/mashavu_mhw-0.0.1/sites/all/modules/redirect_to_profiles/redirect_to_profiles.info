@@ -1,0 +1,3 @@
+name = Redirect to Profiles
+description = Will redirect users to the profiles that they've just created. 
+core = 7.x

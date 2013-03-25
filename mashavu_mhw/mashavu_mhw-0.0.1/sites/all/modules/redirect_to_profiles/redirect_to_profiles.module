@@ -1,0 +1,25 @@
+<?php
+//By:          Mike Ghen
+//Date:        5/22/2012
+//Description: This will redirect users to the profile of the user that they've created after they create a new user
+//             SRC: http://drupal.stackexchange.com/questions/31813/how-to-redirect-a-user-to-the-profile-of-the-user-they-just-created/31817#comment31584_31817
+
+function redirect_to_profiles_form_user_register_form_alter(&$form, &$form_state) 
+//PRE:  &$form is the user/create form info
+//      &$form_state is the user/create forms state
+//POST: redirect_to_profiles_user_register_submit is called if the user can administer users
+{
+  if (user_access('administer users')) {
+    $form['#submit'][] = 'redirect_to_profiles_user_register_submit';
+  }
+}
+
+function redirect_to_profiles_user_register_submit(&$form, &$form_state) 
+//PRE:  &$form is the user/create form info
+//      &$form_state is the user/create forms state
+//POST: user is redirected to user/% 
+{
+  if (isset($form_state['values']['uid'])) {
+    $form_state['redirect'] = 'user/' . $form_state['values']['uid'];
+  }
+}

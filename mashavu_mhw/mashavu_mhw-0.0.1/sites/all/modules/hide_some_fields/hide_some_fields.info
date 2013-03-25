@@ -1,0 +1,3 @@
+name = Hide Some Fields
+description = Hides some fields. The password field when the operator adds patients. The Full Name and Username fields when preforming a consultation or a kyns
+core = 7.x

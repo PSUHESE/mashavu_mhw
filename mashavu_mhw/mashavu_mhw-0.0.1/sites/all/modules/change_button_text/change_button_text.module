@@ -1,0 +1,9 @@
+<?php
+//By:          Mike Ghen
+//Date:        5/21/2012
+//Description: This will change the text of serveral buttons on various forms
+
+//CODE FROM: http://drupal.stackexchange.com/questions/15308/how-do-you-rename-the-save-comment-button
+function change_button_text_form_comment_form_alter(&$form, $form_state) {
+  $form['actions']['save']['#value'] = t('Send Feedback');
+}

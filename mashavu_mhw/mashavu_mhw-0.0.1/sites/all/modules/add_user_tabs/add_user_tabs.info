@@ -1,0 +1,3 @@
+name = Add User Tabs
+description = This module adds the 'Know Your Numbers' link to the main menu on user/% pages
+core = 7.x

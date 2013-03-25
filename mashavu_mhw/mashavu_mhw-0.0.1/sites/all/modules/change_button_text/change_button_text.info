@@ -1,0 +1,3 @@
+name = Change Button Text
+description = Changes the 'Submit' button on ALL comment_form to 'Send feedback'
+core = 7.x

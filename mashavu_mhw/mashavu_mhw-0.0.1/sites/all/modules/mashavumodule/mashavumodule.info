@@ -1,0 +1,3 @@
+name = Mashavu Module
+description = Custom methods for the mashavu web app
+core = 7.x

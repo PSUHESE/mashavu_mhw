@@ -1,0 +1,52 @@
+<?php
+
+function hide_some_fields_form_alter(&$form, $form_state, $form_id) 
+//PRE: 
+//POST: The username, email, and password fields are hidden on the user/registration
+//      form when the operator is adding people.
+{
+  global $user;
+  if($form_id == 'user_register_form') 
+  {
+	
+    if (in_array('Operator', array_values($user->roles)) || (in_array('Supervisor', array_values($user->roles)) && !isset($_GET['operator'])) ) 
+	{
+      unset($form['account']['pass']);
+	  
+	  //Auto assign a role to be patients
+      $form['account']['roles'][6] = array(
+	  '#default_value' => TRUE,
+	  ); 
+	  
+	  //Default email and username and password
+	  $random_mid = uniqid();
+	  $random_email = $random_mid . '@mashavu.com';
+	  $form['account']['name'] = array(
+		'#type' => 'hidden',
+		'#title' => t('Username'),
+		'#maxlength' => USERNAME_MAX_LENGTH,
+		'#required' => TRUE,
+		'#attributes' => array('class' => array('username'),'disabled' => 'disabled' ),
+		'#default_value' => ($random_mid),
+		//'#access' => ($register || ($user->uid == $account->uid && user_access('change own username')) || $admin),
+		'#weight' => -10,
+	  );
+	  
+	  $form['account']['mail'] = array(
+		'#type' => 'hidden',
+		'#title' => t('E-mail address'),
+		'#maxlength' => EMAIL_MAX_LENGTH,
+		'#required' => TRUE,
+		'#default_value' => ($random_email),
+		'#attributes' => array('disabled' => 'disabled'),
+	  );
+    }
+	if(in_array('Supervisor', array_values($user->roles)) && isset($_GET['operator'])) 
+	{
+	  //Auto assign a role to be OPERATOR
+      $form['account']['roles'][5] = array(
+		'#default_value' => TRUE,
+	  );
+	}	  
+  }
+}
